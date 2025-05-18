@@ -88,13 +88,13 @@ router.post('/add-app', async (req, res) => {
 
 router.delete('/delete-app', async (req, res) => {
     try {
-        const { name } = req.body;
+        const { path } = req.body;
 
-        if (!name) {
-            return res.status(400).json({ error: "App name is required" });
+        if (!path) {
+            return res.status(400).json({ error: "App path is required" });
         }
 
-        const result = await AppModel.deleteOne({ name });
+        const result = await AppModel.deleteOne({ path });
 
         if (result.deletedCount === 0) {
             return res.status(404).json({ message: "App not found" });
